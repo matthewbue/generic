@@ -73,6 +73,23 @@ namespace Geent.Controller
             }
         }
 
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateUser([FromBody] UserUpdateRequestDto request)
+        {
+            try
+            {
+                var email = User.Claims.FirstOrDefault(c => c.Type == "email")?.Value;
+                if (string.IsNullOrEmpty(email))
+                    return Unauthorized(new { message = "Usuário não autenticado." });
+
+                await _userService.UpdateUserAsync(email, request);
+                return Ok(new { message = "Dados atualizados com sucesso." });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
 
     }
 }

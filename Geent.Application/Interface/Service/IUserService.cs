@@ -14,6 +14,6 @@ namespace Geent.Application.Interface.Service
         Task VerifyUserAsync(string email, string code);
         Task<UserResponseDto> GetCurrentUserAsync(string email);
 
-
+        Task UpdateUserAsync(string email, UserUpdateRequestDto userUpdateDto);
     }
 }

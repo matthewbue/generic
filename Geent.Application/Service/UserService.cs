@@ -101,6 +101,19 @@ namespace Geent.Application.Service
             return random.Next(100000, 999999).ToString();
         }
 
+        public async Task UpdateUserAsync(string email, UserUpdateRequestDto userUpdateDto)
+        {
+            var user = await _userRepository.GetUserByEmailAsync(email);
+            if (user == null)
+                throw new Exception("Usuário não encontrado.");
+
+            // Atualiza os dados permitidos
+            user.Nome = userUpdateDto.Nome ?? user.Nome;
+            user.Telefone = userUpdateDto.Telefone ?? user.Telefone;
+
+            await _userRepository.UpdateUserAsync(user);
+        }
+
     }
 
 }

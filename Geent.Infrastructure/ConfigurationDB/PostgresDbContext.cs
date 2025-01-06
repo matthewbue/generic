@@ -11,6 +11,7 @@ namespace Geent.Infrastructure.ConfigurationDB
     public class PostgresDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Post> Post { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Notification> Notifications { get; set; }
 

@@ -7,11 +7,13 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Obtendo a chave secreta do JWT das configurações
 var jwtSecretKey = builder.Configuration["JwtSettings:SecretKey"];
 
-
+// Registrando os serviços da aplicação
 builder.Services.AddApplicationServices(builder.Configuration);
 
+// Configuração do JWT
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -28,6 +30,18 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+// Adicionando CORS e configurando uma política global
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()    // Permite qualquer origem (para desenvolvimento)
+              .AllowAnyMethod()    // Permite qualquer método HTTP (GET, POST, etc.)
+              .AllowAnyHeader();   // Permite qualquer cabeçalho
+    });
+});
+
+// Adicionando suporte a controladores e serviços adicionais
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -42,6 +56,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Aplicando a política de CORS
+app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();

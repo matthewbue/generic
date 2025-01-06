@@ -12,6 +12,7 @@ namespace Geent.Application.DTOs.Response
         public string? Email { get; set; }
         public string? Telefone { get; set; }
         public string? TipoUsuario { get; set; }
-        
+        public bool FirstAcess { get; set; }
+
     }
 }

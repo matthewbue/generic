@@ -60,7 +60,7 @@ namespace Geent.Controller
         {
             try
             {
-                var email = User.Claims.FirstOrDefault(c => c.Type == "email")?.Value;
+                var email = User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
                 if (string.IsNullOrEmpty(email))
                     return Unauthorized(new { message = "Usuário não autenticado." });
 
@@ -78,11 +78,11 @@ namespace Geent.Controller
         {
             try
             {
-                var email = User.Claims.FirstOrDefault(c => c.Type == "email")?.Value;
-                if (string.IsNullOrEmpty(email))
-                    return Unauthorized(new { message = "Usuário não autenticado." });
+                //var email = User.Claims.FirstOrDefault(c => c.Type == "email")?.Value;
+                //if (string.IsNullOrEmpty(email))
+                //    return Unauthorized(new { message = "Usuário não autenticado." });
 
-                await _userService.UpdateUserAsync(email, request);
+                await _userService.UpdateUserAsync(request.Email, request);
                 return Ok(new { message = "Dados atualizados com sucesso." });
             }
             catch (Exception ex)

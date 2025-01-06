@@ -28,7 +28,7 @@ namespace Geent.Application.Service
             if (existingUser != null)
                 throw new Exception("Usuário já existe com esse email.");
 
-            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(userRegisterDto.Senha);
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(userRegisterDto.Password);
             
             var verificationCode = GenerateVerificationCode();
 
@@ -42,6 +42,7 @@ namespace Geent.Application.Service
                 Telefone = userRegisterDto.Telefone,
                 TipoUsuario = userRegisterDto.TipoUsuario,
                 DataCriacao = DateTime.UtcNow,
+                FirstAcess = true,
                 VerificationCode = verificationCode,
                 IsVerified = false,
                 VerificationCodeExpiration = DateTime.UtcNow.AddHours(1) 
@@ -107,9 +108,9 @@ namespace Geent.Application.Service
             if (user == null)
                 throw new Exception("Usuário não encontrado.");
 
-            // Atualiza os dados permitidos
             user.Nome = userUpdateDto.Name ?? user.Nome;
             user.Telefone = userUpdateDto.Phone ?? user.Telefone;
+            user.FirstAcess = false;
 
             await _userRepository.UpdateUserAsync(user);
         }

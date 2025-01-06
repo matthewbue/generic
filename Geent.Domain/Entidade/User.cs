@@ -14,6 +14,7 @@ namespace Geent.Domain.Entidade
         public string? Password { get; set; }
         public string? Telefone { get; set; }
         public string? TipoUsuario { get; set; }
+        public bool FirstAcess { get; set; }
         public DateTime DataCriacao { get; set; }
         public string? FcmToken { get; set; }
         public string? VerificationCode { get; set; }

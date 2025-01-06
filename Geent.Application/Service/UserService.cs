@@ -108,8 +108,8 @@ namespace Geent.Application.Service
                 throw new Exception("Usuário não encontrado.");
 
             // Atualiza os dados permitidos
-            user.Nome = userUpdateDto.Nome ?? user.Nome;
-            user.Telefone = userUpdateDto.Telefone ?? user.Telefone;
+            user.Nome = userUpdateDto.Name ?? user.Nome;
+            user.Telefone = userUpdateDto.Phone ?? user.Telefone;
 
             await _userRepository.UpdateUserAsync(user);
         }

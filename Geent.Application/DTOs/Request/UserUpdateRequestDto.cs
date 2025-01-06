@@ -8,9 +8,10 @@ namespace Geent.Application.DTOs.Request
 {
     public class UserUpdateRequestDto
     {
-        public string Nome { get; set; }
-        public string Telefone { get; set; }
-      
+        public string? Name { get; set; }
+        public string? Phone { get; set; }
+        public string? Email { get; set; }
+
     }
 
 }

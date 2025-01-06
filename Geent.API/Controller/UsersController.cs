@@ -41,7 +41,7 @@ namespace Geent.Controller
                 return BadRequest(new { message = ex.Message });
             }
         }
-        [HttpPost("verify")]
+        [HttpPost("code-email")]
         public async Task<IActionResult> VerifyUser([FromBody] VerifyUserRequestDto request)
         {
             try
@@ -73,7 +73,7 @@ namespace Geent.Controller
             }
         }
 
-        [HttpPut("update")]
+        [HttpPut("update-profile")]
         public async Task<IActionResult> UpdateUser([FromBody] UserUpdateRequestDto request)
         {
             try

@@ -9,6 +9,10 @@ namespace Geent.Domain.Interface
 {
     public interface IPostRepository
     {
-        Task CreatePost(Post post);
+        Task CreateItem(Item post);
+
+        Task DeleteItem(int id);
+        Task<Item> GetById(int id);
+        Task<List<Item>> GetAllItems();
     }
 }

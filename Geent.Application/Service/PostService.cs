@@ -21,9 +21,29 @@ namespace Geent.Application.Service
             _postRepository = configuration;
         }
 
-        public async Task CreatePost(Post post)
+        public async Task CreateItem(Item post)
         { 
-          await _postRepository.CreatePost(post);
+          await _postRepository.CreateItem(post);
+        }
+
+        public async Task DeleteItem(int id)
+        {
+            await _postRepository.DeleteItem(id);
+        }
+
+        public async Task<List<Item>> GetAllItems()
+        {
+            return await _postRepository.GetAllItems();
+        }
+
+        public async Task<Item> GetById(int id)
+        {
+            return await _postRepository.GetById(id);
+        }
+
+        public Task PutEditItem(Item post)
+        {
+            throw new NotImplementedException();
         }
     }
 }

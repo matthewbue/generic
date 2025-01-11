@@ -60,8 +60,8 @@ app.UseHttpsRedirection();
 // Aplicando a política de CORS
 app.UseCors("AllowAll");
 
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthentication();
+//app.UseAuthorization();
 
 app.MapControllers();
 

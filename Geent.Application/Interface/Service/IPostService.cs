@@ -9,6 +9,12 @@ namespace Geent.Application.Interface.Service
 {
     public interface IPostService
     {
-        Task CreatePost(Post post);
+       Task CreateItem(Item post);
+        Task<List<Item>> GetAllItems();
+        Task DeleteItem(int id);
+        Task<Item> GetById(int id);
+        Task PutEditItem(Item post);
+ 
+
     }
 }

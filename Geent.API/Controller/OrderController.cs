@@ -48,5 +48,37 @@ namespace Geent.Controller
         }
 
 
+        [HttpPost("DeleteItem")]
+        public async Task<IActionResult> DeleteItem([FromQuery]int id)
+        {
+            try
+            {
+
+                await _postService.DeleteItem(id);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpPost("GetItemById")]
+        public async Task<IActionResult> GetByIdItem([FromQuery] int id)
+        {
+            try
+            {
+
+               var item = await _postService.GetById(id);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
     }
 }

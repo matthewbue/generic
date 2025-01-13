@@ -30,12 +30,22 @@ namespace Geent.Infrastructure.Repositories
         {
             var item = await _context.Items.FirstOrDefaultAsync(c => c.Id == id);
              _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<Item>> GetAllItems()
         {
            return await _context.Items.ToListAsync();
         }
+
+        public async Task<List<Order>> GetAllOrder()
+        {
+            return await _context.Orders
+                .Include(o => o.Items)                  // Inclui a lista de OrderItems
+                .ThenInclude(oi => oi.Item)             // Inclui os itens associados a cada OrderItem
+                .ToListAsync();
+        }
+
 
         public async  Task<Item> GetById(int id)
         {

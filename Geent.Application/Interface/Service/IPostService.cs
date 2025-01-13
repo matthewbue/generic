@@ -14,7 +14,10 @@ namespace Geent.Application.Interface.Service
         Task DeleteItem(int id);
         Task<Item> GetById(int id);
         Task PutEditItem(Item post);
- 
+
+        Task<List<Order>> GetAllOrder();
+
+
 
     }
 }

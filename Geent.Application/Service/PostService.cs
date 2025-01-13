@@ -41,6 +41,12 @@ namespace Geent.Application.Service
             return await _postRepository.GetById(id);
         }
 
+
+        public async Task<List<Order>> GetAllOrder()
+        {
+            return await _postRepository.GetAllOrder();
+        }
+
         public Task PutEditItem(Item post)
         {
             throw new NotImplementedException();

@@ -18,7 +18,7 @@ namespace Geent.Controller
         }
 
         [HttpGet("GetAllItem")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllItem()
         {
             try
             {
@@ -48,7 +48,7 @@ namespace Geent.Controller
         }
 
 
-        [HttpPost("DeleteItem")]
+        [HttpDelete("DeleteItem")]
         public async Task<IActionResult> DeleteItem([FromQuery]int id)
         {
             try
@@ -73,6 +73,22 @@ namespace Geent.Controller
                var item = await _postService.GetById(id);
 
                 return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpGet("GetAllOrder")]
+        public async Task<IActionResult> GetAllOrder()
+        {
+            try
+            {
+
+                var item = await _postService.GetAllOrder();
+
+                return Ok(item);
             }
             catch (Exception ex)
             {

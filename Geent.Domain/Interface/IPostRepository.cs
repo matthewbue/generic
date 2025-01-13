@@ -14,5 +14,7 @@ namespace Geent.Domain.Interface
         Task DeleteItem(int id);
         Task<Item> GetById(int id);
         Task<List<Item>> GetAllItems();
+
+        Task<List<Order>> GetAllOrder();
     }
 }

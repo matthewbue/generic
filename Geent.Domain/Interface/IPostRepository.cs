@@ -16,5 +16,7 @@ namespace Geent.Domain.Interface
         Task<List<Item>> GetAllItems();
 
         Task<List<Order>> GetAllOrder();
+
+        Task PutEditItem(Item item);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Geent.Domain.Entidade;
+﻿using Geent.Application.DTOs.Request;
+using Geent.Domain.Entidade;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Geent.Application.Interface.Service
         Task<List<Item>> GetAllItems();
         Task DeleteItem(int id);
         Task<Item> GetById(int id);
-        Task PutEditItem(Item post);
+        Task PutEditItem(ItemEditRequestDto itemDto);
 
         Task<List<Order>> GetAllOrder();
 

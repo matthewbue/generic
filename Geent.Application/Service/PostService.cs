@@ -47,9 +47,41 @@ namespace Geent.Application.Service
             return await _postRepository.GetAllOrder();
         }
 
-        public Task PutEditItem(Item post)
+        public async Task PutEditItem(ItemEditRequestDto itemDto)
         {
-            throw new NotImplementedException();
+            // Verifica se o item existe no repositório
+            var existingItem = await _postRepository.GetById(itemDto.Id);
+
+              if (existingItem == null)
+              {
+                  throw new KeyNotFoundException($"Item com ID {itemDto.Id} não encontrado.");
+              }
+
+            // Atualiza as propriedades do item somente se o campo no DTO não for nulo
+            if (!string.IsNullOrEmpty(itemDto.Name))
+            {
+                existingItem.Name = itemDto.Name;
+            }
+
+            if (!string.IsNullOrEmpty(itemDto.Description))
+            {
+                existingItem.Description = itemDto.Description;
+            }
+
+            if (itemDto.Price.HasValue)
+            {
+                existingItem.Price = itemDto.Price.Value;
+            }
+
+            if (!string.IsNullOrEmpty(itemDto.Category))
+            {
+                existingItem.Category = itemDto.Category;
+            }
+
+            // Chama o repositório para salvar as alterações
+            await _postRepository.PutEditItem(existingItem);
+            
         }
+
     }
 }

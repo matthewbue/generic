@@ -1,4 +1,5 @@
-﻿using Geent.Application.DTOs.Response;
+﻿using Geent.Application.DTOs.Request;
+using Geent.Application.DTOs.Response;
 using Geent.Application.Interface.Service;
 using Geent.Domain.Entidade;
 using Microsoft.AspNetCore.Mvc;
@@ -95,6 +96,20 @@ namespace Geent.Controller
                 return BadRequest(new { message = ex.Message });
             }
         }
+        [HttpPut("PutEditItem")]
+        public async Task<IActionResult> PutEditItem(ItemEditRequestDto itemDto)
+        {
+            try
+            {
 
+                var item = _postService.PutEditItem(itemDto);
+
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }

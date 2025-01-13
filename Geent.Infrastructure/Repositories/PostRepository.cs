@@ -49,7 +49,15 @@ namespace Geent.Infrastructure.Repositories
 
         public async  Task<Item> GetById(int id)
         {
-            return await _context.Items.FirstOrDefaultAsync(c => c.Id == id);
+            var result = _context.Items.FirstOrDefault(c => c.Id == id);
+            return result;
+        }
+
+        public async Task PutEditItem(Item item)
+        {
+           var result = _context.Items.Update(item); // Atualiza o item no contexto do DbContext
+           _context.SaveChanges(); // Salva as mudanças no banco de dados
+            return;
         }
     }
 }
